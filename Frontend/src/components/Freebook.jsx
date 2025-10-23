@@ -9,16 +9,19 @@ import axios from "axios";
 import Cards from "./Cards";
 function Freebook() {
   const [book, setBook] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get("http://localhost:4001/book");
-
-        const data = res.data.filter((data) => data.category === "Free");
-        console.log(data);
-        setBook(data);
+        setLoading(true);
+        const res = await axios.get("http://localhost:4001/book?featured=true&limit=12");
+        console.log(res.data);
+        setBook(res.data.books || []);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     getBook();
@@ -60,23 +63,40 @@ function Freebook() {
   };
   return (
     <>
-      <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
-        <div>
-          <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusantium veritatis alias pariatur ad dolor repudiandae eligendi
-            corporis nulla non suscipit, iure neque earum?
+      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div className="text-center mb-12">
+          <h1 className="font-bold text-4xl text-gray-800 dark:text-white mb-4">
+            Featured <span className="text-indigo-600">Books</span>
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Discover our handpicked collection of must-read books, from timeless classics 
+            to contemporary bestsellers. Find your next favorite read today.
           </p>
         </div>
 
-        <div>
-          <Slider {...settings}>
-            {book.map((item) => (
-              <Cards item={item} key={item.id} />
-            ))}
-          </Slider>
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+          </div>
+        ) : book.length > 0 ? (
+          <div>
+            <Slider {...settings}>
+              {book.map((item) => (
+                <Cards item={item} key={item._id} />
+              ))}
+            </Slider>
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <div className="text-6xl mb-4">📚</div>
+            <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-300 mb-2">
+              No books available
+            </h3>
+            <p className="text-gray-500 dark:text-gray-400">
+              Check back later for new arrivals!
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
