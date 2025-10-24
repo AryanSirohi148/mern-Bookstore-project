@@ -15,7 +15,7 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
   );
   const element = document.documentElement;
   useEffect(() => {
