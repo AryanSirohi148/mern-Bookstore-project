@@ -15,7 +15,7 @@ function Freebook() {
     const getBook = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:4001/book?featured=true&limit=12");
+        const res = await axios.get("https://bookstore-backend-o7xy.onrender.com/book?featured=true&limit=12");
         console.log(res.data);
         setBook(res.data.books || []);
       } catch (error) {

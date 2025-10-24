@@ -15,8 +15,8 @@ function Course() {
       try {
         setLoading(true);
         const url = searchQuery 
-          ? `http://localhost:4001/book?search=${encodeURIComponent(searchQuery)}`
-          : "http://localhost:4001/book";
+          ? `https://bookstore-backend-o7xy.onrender.com/book?search=${encodeURIComponent(searchQuery)}`
+          : "https://bookstore-backend-o7xy.onrender.com/book";
         const res = await axios.get(url);
         console.log(res.data);
         // Handle the new API response structure
