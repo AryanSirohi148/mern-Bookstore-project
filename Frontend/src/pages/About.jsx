@@ -116,11 +116,11 @@ function About() {
                   <span className="text-2xl text-white font-bold">AS</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                  Alex Smith
+                  Aryan Sirohi
                 </h3>
                 <p className="text-indigo-600 dark:text-indigo-400 mb-3">Founder & CEO</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Passionate about literature and technology, Alex founded BookHaven 
+                  Passionate about literature and technology, Aryan founded BookHaven 
                   to bridge the gap between traditional bookstores and modern convenience.
                 </p>
               </div>
@@ -141,14 +141,14 @@ function About() {
               
               <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-red-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl text-white font-bold">DK</span>
+                  <span className="text-2xl text-white font-bold">AS</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                  David Kim
+                  Adhyyan Sirohi
                 </h3>
                 <p className="text-indigo-600 dark:text-indigo-400 mb-3">Tech Lead</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  David leads our technical team, creating seamless experiences that 
+                  Adhyyan leads our technical team, creating seamless experiences that 
                   make discovering and purchasing books effortless.
                 </p>
               </div>

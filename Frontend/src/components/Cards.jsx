@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartProvider";
 import toast from "react-hot-toast";
+import { getBookCoverFallbacks } from "../utils/bookCovers";
 
 function Cards({ item }) {
   const { addToCart, isInCart } = useCart();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const fallbackImages = getBookCoverFallbacks(item);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', {
@@ -44,20 +47,14 @@ function Cards({ item }) {
         <div className="card w-80 bg-white shadow-xl hover:scale-105 duration-300 dark:bg-slate-800 dark:text-white border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
           <figure className="relative">
             <img 
-              src={item.image} 
+              src={fallbackImages[currentImageIndex]} 
               alt={item.title}
               className="w-full h-64 object-cover"
-              onError={(e) => {
-                // Try Amazon image with ISBN
-                e.target.src = `https://images-na.ssl-images-amazon.com/images/P/${item.isbn?.replace(/[^0-9]/g, '') || '0000000000'}.01.L.jpg`;
-                e.target.onError = () => {
-                  // Try Open Library as second fallback
-                  e.target.src = `https://covers.openlibrary.org/b/isbn/${item.isbn || '9780000000000'}-L.jpg`;
-                  e.target.onError = () => {
-                    // Final fallback to placeholder
-                    e.target.src = "https://via.placeholder.com/300x400/4f46e5/ffffff?text=📚+Book+Cover";
-                  };
-                };
+              onError={() => {
+                console.log(`Image ${currentImageIndex + 1} failed to load for ${item.title}, trying next fallback...`);
+                if (currentImageIndex < fallbackImages.length - 1) {
+                  setCurrentImageIndex(currentImageIndex + 1);
+                }
               }}
             />
             {item.isBestSeller && (
