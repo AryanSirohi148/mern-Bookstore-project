@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Login from "./Login";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -109,15 +108,12 @@ function Signup() {
                 </button>
                 <p className="text-xl">
                   Have account?{" "}
-                  <button
-                    className="underline text-blue-500 cursor-pointer"
-                    onClick={() =>
-                      document.getElementById("my_modal_3").showModal()
-                    }
+                  <Link
+                    to="/"
+                    className="underline text-blue-500 cursor-pointer hover:text-blue-700"
                   >
-                    Login
-                  </button>{" "}
-                  <Login />
+                    Login here
+                  </Link>
                 </p>
               </div>
             </form>

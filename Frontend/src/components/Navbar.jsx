@@ -9,6 +9,9 @@ import { useCart } from "../context/CartProvider";
 function Navbar() {
   const [authUser, setAuthUser] = useAuth();
   const { getCartItemsCount } = useCart();
+  
+  console.log("🔍 Navbar component - authUser:", authUser);
+  console.log("🔍 Navbar component - authUser is truthy:", !!authUser);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const [theme, setTheme] = useState(
