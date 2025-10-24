@@ -19,9 +19,10 @@ A full-stack MERN (MongoDB, Express.js, React.js, Node.js) bookstore application
 
 ### 📚 **Book Management**
 - **Rich Book Data**: 19+ books across multiple categories
-- **Book Covers**: High-quality images with fallback handling
+- **Enhanced Book Covers**: Multi-level fallback system with category-specific covers
 - **Book Information**: Author, price, ratings, reviews, stock status
 - **Categories & Tags**: Organized book classification system
+- **Smart Image Loading**: Automatic fallback to relevant category covers
 
 ### 🔧 **Technical Features**
 - **Authentication**: User login/signup with JWT tokens
@@ -100,6 +101,18 @@ bookStoreApp-master/
 │   └── package.json             # Frontend dependencies
 └── README.md                    # Project documentation
 ```
+
+## 🚀 Quick Start
+
+### **Live Demo**
+- **Backend API**: `https://bookstore-backend-o7xy.onrender.com`
+- **Frontend**: Ready for Vercel deployment
+- **Database**: MongoDB Atlas with production data
+
+### **Immediate Deployment**
+1. **Frontend**: Connect to Vercel and deploy
+2. **Backend**: Already deployed on Render
+3. **Database**: MongoDB Atlas connected
 
 ## 🛠️ Installation & Setup
 
@@ -238,6 +251,31 @@ node seedData.js
 - Efficient re-renders
 - Optimized bundle size
 
+## ✨ Recent Improvements
+
+### **Enhanced Book Cover System**
+- **Multi-level Fallback**: 6-tier fallback system for book covers
+- **Category-Specific Covers**: Beautiful Unsplash images for each book category
+- **Smart Loading**: Automatic fallback to relevant covers when original images fail
+- **Professional Appearance**: High-quality, consistent book cover display
+
+### **Updated Team Information**
+- **CEO**: Aryan Sirohi (Founder & CEO)
+- **Tech Lead**: Adhyyan Sirohi (Tech Lead)
+- **Personalized Leadership**: Updated About page with current team
+
+### **Deployment Ready**
+- **Backend**: Deployed on Render with CORS configuration
+- **Frontend**: Vercel-ready with optimized build configuration
+- **Database**: MongoDB Atlas with production data
+- **API**: Fully functional with 19+ books
+
+### **Technical Enhancements**
+- **CORS Fixed**: Backend configured for all origins
+- **Login Fixed**: Form submission and authentication working
+- **Image Optimization**: Enhanced fallback system for book covers
+- **Build Optimization**: Production-ready builds with Vite
+
 ## 📊 Database Schema
 
 ### **Book Model**
@@ -286,20 +324,39 @@ node seedData.js
 
 ## 🚀 Deployment
 
-### **Frontend Deployment (Vercel/Netlify)**
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder
-3. Set environment variables for API URL
+### **Backend Deployment (Render)**
+✅ **Currently Deployed**: `https://bookstore-backend-o7xy.onrender.com`
 
-### **Backend Deployment (Heroku/Railway)**
-1. Set environment variables
-2. Connect to MongoDB Atlas
-3. Deploy with process manager
+**Setup Steps:**
+1. Connect GitHub repository to Render
+2. Set environment variables:
+   - `MongoDBURI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: Your JWT secret key
+   - `PORT`: 4001 (auto-set by Render)
+3. Deploy automatically on git push
+
+**CORS Configuration:**
+- Configured to allow all origins for development
+- Production-ready with proper CORS headers
+
+### **Frontend Deployment (Vercel)**
+✅ **Ready for Deployment**
+
+**Setup Steps:**
+1. Connect GitHub repository to Vercel
+2. Set build command: `npm run build`
+3. Set output directory: `dist`
+4. Deploy automatically on git push
+
+**Configuration Files:**
+- `vercel.json` - Vercel deployment configuration
+- `vite.config.js` - Optimized for production builds
 
 ### **Database (MongoDB Atlas)**
-1. Create MongoDB Atlas cluster
-2. Get connection string
-3. Update environment variables
+✅ **Currently Connected**
+- Production database with 19+ books
+- Seeded with comprehensive book data
+- Optimized for performance and scalability
 
 ## 🧪 Testing
 
@@ -317,8 +374,14 @@ node seedData.js
 
 ### **Image Loading**
 - **Issue**: Some book images may not load
-- **Solution**: Multiple fallback levels implemented
-- **Fallback Order**: Primary image → ISBN-based image → Placeholder
+- **Solution**: Enhanced multi-level fallback system implemented
+- **Fallback Order**: 
+  1. Primary image from API
+  2. Google Books API
+  3. Open Library with ISBN
+  4. Amazon with ISBN
+  5. Category-specific Unsplash images
+  6. Custom placeholder with book title
 
 ### **Theme Switching**
 - **Issue**: Theme not persisting across pages
@@ -365,6 +428,16 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Team
 
+### **Leadership**
+- **Aryan Sirohi** - Founder & CEO
+  - Passionate about literature and technology
+  - Founded BookHaven to bridge traditional bookstores with modern convenience
+
+- **Adhyyan Sirohi** - Tech Lead
+  - Leads the technical team
+  - Creates seamless experiences for book discovery and purchasing
+
+### **Development Team**
 - **Frontend Development**: React.js, Tailwind CSS, Context API
 - **Backend Development**: Node.js, Express.js, MongoDB
 - **UI/UX Design**: Modern, responsive design with dark mode
@@ -385,6 +458,34 @@ For support and questions:
 - **Express.js** - Backend framework
 - **Open Library** - Book cover images
 - **Amazon** - Book cover fallbacks
+
+---
+
+## 📈 Project Status
+
+### **✅ Completed Features**
+- [x] User authentication (login/signup)
+- [x] Book catalog with search functionality
+- [x] Shopping cart with persistent storage
+- [x] Responsive design with dark/light mode
+- [x] Enhanced book cover system with fallbacks
+- [x] Backend API deployed on Render
+- [x] Database with 19+ books seeded
+- [x] CORS configuration for production
+- [x] Team information updated
+- [x] Production-ready build configuration
+
+### **🚀 Ready for Production**
+- **Backend**: Live at `https://bookstore-backend-o7xy.onrender.com`
+- **Frontend**: Vercel deployment ready
+- **Database**: MongoDB Atlas connected
+- **Features**: All core functionality working
+
+### **🎯 Next Steps**
+1. Deploy frontend to Vercel
+2. Set up custom domain (optional)
+3. Configure production environment variables
+4. Monitor performance and user feedback
 
 ---
 
