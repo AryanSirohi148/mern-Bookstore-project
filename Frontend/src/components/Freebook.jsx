@@ -15,11 +15,41 @@ function Freebook() {
     const getBook = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("https://bookstore-backend-o7xy.onrender.com/book?featured=true&limit=12");
-        console.log(res.data);
-        setBook(res.data.books || []);
+        console.log("Fetching books from API...");
+        
+        // Try with fetch first to see if it's an axios issue
+        const response = await fetch("https://bookstore-backend-o7xy.onrender.com/book?featured=true&limit=12", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        console.log("Fetch response status:", response.status);
+        console.log("Fetch response headers:", response.headers);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log("API Response:", data);
+        setBook(data.books || []);
+        
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching books:", error);
+        console.error("Error details:", error.message);
+        
+        // Fallback to axios if fetch fails
+        try {
+          console.log("Trying with axios as fallback...");
+          const res = await axios.get("https://bookstore-backend-o7xy.onrender.com/book?featured=true&limit=12");
+          console.log("Axios API Response:", res.data);
+          setBook(res.data.books || []);
+        } catch (axiosError) {
+          console.error("Axios also failed:", axiosError);
+          setBook([]);
+        }
       } finally {
         setLoading(false);
       }
@@ -77,9 +107,13 @@ function Freebook() {
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <span className="ml-3 text-gray-600 dark:text-gray-300">Loading books...</span>
           </div>
         ) : book.length > 0 ? (
           <div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
+              Found {book.length} featured books
+            </p>
             <Slider {...settings}>
               {book.map((item) => (
                 <Cards item={item} key={item._id} />
@@ -95,6 +129,12 @@ function Freebook() {
             <p className="text-gray-500 dark:text-gray-400">
               Check back later for new arrivals!
             </p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+            >
+              Refresh Page
+            </button>
           </div>
         )}
       </div>
